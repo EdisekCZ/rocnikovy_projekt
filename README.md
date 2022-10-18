@@ -1,7 +1,8 @@
 ## Fyzika Koule
 
-### Autor: Edis Bučan
-### Konzultanti: Petr Grussmann
+Autor: Edis Bučan
+
+Konzultanti: Petr Grussmann
 
 ## Cíle:
 - Zobrazit objekt (kouli) 

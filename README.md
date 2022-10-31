@@ -15,4 +15,5 @@ Konzultanti: Petr Grussmann
 
 ## Zdroje:
 https://kivy.org/
+
 https://bitbucket.org/eddian/test_pong/downloads/

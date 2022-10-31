@@ -14,3 +14,4 @@ Konzultanti: Petr Grussmann
 - Python
 
 ## Zdroje:
+https://kivy.org/

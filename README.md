@@ -1,4 +1,4 @@
-## Fyzika Koule
+## Výpočet trajektorie koule
 
 Autor: Edis Bučan
 
@@ -11,9 +11,7 @@ Konzultanti: Petr Grussmann
 - měřit její fyzikalní veličiny (dráhu, kterou ujede, rychlost, apod.)
 
 ## Použité technologie:
-- Python
+- Python, Kivy
 
 ## Zdroje:
 https://kivy.org/
-
-https://bitbucket.org/eddian/test_pong/downloads/

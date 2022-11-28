@@ -1,15 +1,24 @@
-## Výpočet trajektorie koule
+## Hrátky s koulema ( ͡° ͜ʖ ͡°)
 
 Autor: Edis Bučan
 
-Konzultanti: Petr Grussmann
+Konzultanti: Filip Hostinský, Petr Grussmann 
 
 ## Cíle:
-- pohyb koule
--
+- Navrhnout základní strukturu kódu 
+- Zobrazit kouli na plátně  ✔
+- Základní fyzická simulace: 
+  - Gravitace ✔
+  - Kolize 
+  - Výpočet kolize koule s křivkou
+  - Kolize s entitamy
+  - Možnost měnit vlastnosti fyzikalního modelu
+- Vykreslení grafu
+- Interakce s koulí (změna trajektorie)
+
 
 ## Použité technologie:
-- Python, Kivy
+- JavaScript, HTML Canvas
 
 ## Zdroje:
-https://kivy.org/
+https://www.w3schools.com/graphics/game_canvas.asp

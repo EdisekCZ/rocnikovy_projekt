@@ -1,4 +1,4 @@
-## Hrátky s koulema ( ͡° ͜ʖ ͡°)
+## Simulace koulí
 
 Autor: Edis Bučan
 

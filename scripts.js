@@ -1,4 +1,4 @@
-const timeShift = 1 / 165
+const timeShift = 1 / 60
 const canvasHeight = 400
 const canvasWidth = 400
 
@@ -38,6 +38,7 @@ class Ball {
 
   moveGravity() {
     this.vel.y -= this.properties.g * timeShift
+    this.vel.x -= this.properties.g * timeShift - 0.19
   }
 
   moveCheckBoundaries() {
@@ -48,7 +49,7 @@ class Ball {
   }
 }
 
-
+//Spouštění simulace
 class Simulation {
 
   constructor() {
@@ -67,7 +68,7 @@ class Simulation {
       momentumPreservation: 0.5
     }
   }
-
+//Přidá kouly do canvasu
   addBall() {
     this.balls.push(new Ball(50, 350, this.properties, this.ctx))
   }
@@ -75,6 +76,7 @@ class Simulation {
   move() {
     this.balls.forEach(ball => ball.move())
     this.balls.forEach(ball => ball.draw())
+    this.balls.forEach(ball => document.getElementById("velocity").innerHTML = Math.sqrt(Math.pow(ball.vel.y, 2) + Math.pow(ball.vel.x, 2)).toFixed(1))
   }
 
   begin() {

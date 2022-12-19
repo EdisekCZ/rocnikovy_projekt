@@ -13,7 +13,8 @@ Konzultanti: Filip Hostinský, Petr Grussmann
   - Výpočet kolize koule s křivkou
   - Kolize s entitamy
   - Možnost měnit vlastnosti fyzikalního modelu
-- Vykreslení grafu
+- Vykreslení grafu ✔
+- Možnost pro uživatele změnit graf
 - Interakce s koulí (změna trajektorie)
 
 

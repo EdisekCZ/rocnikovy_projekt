@@ -1,101 +1,96 @@
-const timeShift = 1 / 60
-const canvasHeight = 400
-const canvasWidth = 400
+// Nazvy modulu
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    Runner = Matter.Runner,
+    Bodies = Matter.Bodies,
+    Composite = Matter.Composite;
 
-class Ball {
-  constructor(x, y, properties, ctx) {
-    this.pos = {
-      x: x,
-      y: y
+// Vyvolani enginu matter.js
+var engine = Engine.create();
+
+const canvasHeight = window.innerHeight - 2
+const canvasWidth = 1500
+
+// Vytvoreni renderovaci funkce
+var render = Render.create({
+    element: document.body,
+    engine: engine,
+    options: {
+        width: canvasWidth,
+        height: canvasHeight
     }
-    this.vel = {
-      x: 0,
-      y: 0
-    }
-    this.size = 20;
-    this.properties = properties
-    this.ctx = ctx
-  }
+});
 
-  draw() {
-    const canvasRelativeYPos = canvasHeight - this.pos.y
-    console.log("1")
-    this.ctx.beginPath();
-    this.ctx.arc(this.pos.x, canvasRelativeYPos, 50, 0, 2 * Math.PI);
-    this.ctx.stroke();
-  }
+// Objekty a jejich parametry
 
-  move() {
-    this.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+const wallWidth = 20
 
-    this.moveGravity()
+var circleA = Bodies.circle(200, 50, 25, {density: 0.1}, [300]);
+var wallBotton = Bodies.rectangle(0, canvasHeight + wallWidth /2, canvasWidth * 2, wallWidth, {isStatic: true});
+var wallTop = Bodies.rectangle(0, -(wallWidth /2), canvasWidth * 2, wallWidth, {isStatic: true});
+var wallLeft = Bodies.rectangle(-(wallWidth /2), 0, wallWidth, canvasHeight * 2, {isStatic: true});
+var wallRight = Bodies.rectangle(canvasWidth + wallWidth /2, 0, wallWidth, canvasHeight * 2, {isStatic: true});
 
-    this.moveCheckBoundaries()
-
-    this.pos.x += this.vel.x
-    this.pos.y += this.vel.y
-  }
-
-  moveGravity() {
-    this.vel.y -= this.properties.g * timeShift
-    this.vel.x -= this.properties.g * timeShift - 0.19
-  }
-
-  moveCheckBoundaries() {
-    if (this.pos.y < 0) {
-      this.pos.y = 0
-      this.vel.y = (-this.vel.y) * this.properties.momentumPreservation
-    }
-  }
+//velice velice slozte graf segment I guess
+function linearGraphSegment(startingXCords, startingYCords, delta, segmentLength = 5) {
+    const height = 10
+    vertices = [
+        {x : 0 , y : 0},
+        {x : segmentLength , y : delta},
+        {x : segmentLength , y : delta + height},
+        {x : 0, y : height},
+    ]
+    return Bodies.fromVertices(startingXCords, startingYCords - (delta /2), vertices, {isStatic: true});
 }
 
-//Spouštění simulace
-class Simulation {
-
-  constructor() {
-    let canvas = document.createElement("canvas")
-    canvas.width  = 400;
-    canvas.height = 400;
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(canvas);
-    this.ctx = canvas.getContext("2d")
-
-    this.balls = []
-    this.timeStep = 0
-
-    this.properties = {
-      g: 9.81,
-      momentumPreservation: 0.5
+//velice velice slozity grafotvoric 2000F
+function graphLinearByValues(x, y, values, segmentLength = 10) {
+    const arr = []
+    for (let i = 0; i < values.length; i++) {
+        const delta = i === 0 ? 0 : values[i] - values[i-1]
+        arr.push(linearGraphSegment(i * segmentLength, values[i], delta, segmentLength))
     }
-  }
-//Přidá kouly do canvasu
-  addBall() {
-    this.balls.push(new Ball(50, 350, this.properties, this.ctx))
-  }
-
-  move() {
-    this.balls.forEach(ball => ball.move())
-    this.balls.forEach(ball => ball.draw())
-    this.balls.forEach(ball => document.getElementById("velocity").innerHTML = Math.sqrt(Math.pow(ball.vel.y, 2) + Math.pow(ball.vel.x, 2)).toFixed(1))
-  }
-
-  begin() {
-    // if (this.timeStep > 8000) return
-    // this.timeStep += 1
-    // this.move()
-    // window.requestAnimationFrame(this.begin);
-  }
-
+    return arr
 }
 
-const simulation = new Simulation()
-simulation.addBall()
-let steps = 0
 
-function xd() {
-  if (steps > 6000) return
-  steps += 1
-  simulation.move()
-  window.requestAnimationFrame(xd);
+const segmentLength = 10
+
+
+// generace databodů dle zadané funkce
+let dataPoints = []
+// <7;7>
+for (let x = -(canvasWidth / segmentLength); x <= (canvasWidth / segmentLength); x++) {
+    let point = (
+            -(
+                
+                // (2/x)
+
+                Math.sin(x / 12)
+                
+                )
+            
+             * canvasHeight /4) + canvasHeight /2
+    
+
+    dataPoints.push(point)
 }
-xd()
+console.log(dataPoints)
+
+
+g = graphLinearByValues(50, 150, dataPoints, segmentLength)
+console.log(g)
+
+
+
+// Pridani objektu do sveta
+Composite.add(engine.world, [circleA, ...g, wallBotton, wallTop, wallLeft, wallRight]);
+
+// Render
+Render.run(render);
+
+// Vytvoreni behu simulace
+var runner = Runner.create();
+
+// Beh enginu
+Runner.run(runner, engine);

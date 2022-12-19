@@ -18,7 +18,8 @@ Konzultanti: Filip Hostinský, Petr Grussmann
 
 
 ## Použité technologie:
-- JavaScript, HTML Canvas
+- JavaScript, HTML Canvas, Matter.js
 
 ## Zdroje:
 https://www.w3schools.com/graphics/game_canvas.asp
+https://brm.io/matter-js/

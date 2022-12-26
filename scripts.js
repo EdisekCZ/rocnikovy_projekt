@@ -1,14 +1,29 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const graph = urlParams.get('graph') || "0"
+const segment = urlParams.get('segment') || "10"
+document.getElementById("graph").value = graph
+document.getElementById("segment").value = segment
+console.log(graph)
+console.log(segment)
+
 // Nazvy modulu
 var Engine = Matter.Engine,
+    World = Matter.World,
+    Events = Matter.Events,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
-    Composite = Matter.Composite;
-
+    Composite = Matter.Composite,
+    Constraint = Matter.Constraint,
+    Mouse = Matter.Mouse,
+    MouseConstraint = Matter.MouseConstraint;
+    
 // Vyvolani enginu matter.js
 var engine = Engine.create();
+var world = engine.world;
 
-const canvasHeight = window.innerHeight - 2
+const canvasHeight = 800
 const canvasWidth = 1500
 
 // Vytvoreni renderovaci funkce
@@ -17,7 +32,7 @@ var render = Render.create({
     engine: engine,
     options: {
         width: canvasWidth,
-        height: canvasHeight
+        height: canvasHeight,
     }
 });
 
@@ -25,11 +40,15 @@ var render = Render.create({
 
 const wallWidth = 20
 
-var circleA = Bodies.circle(200, 50, 25, {density: 0.1}, [300]);
-var wallBotton = Bodies.rectangle(0, canvasHeight + wallWidth /2, canvasWidth * 2, wallWidth, {isStatic: true});
+var circleA = Bodies.circle(200, 50, 25, [300]);
+var wallBotton = Bodies.rectangle(0, canvasHeight + wallWidth /2, canvasWidth * 2, wallWidth, {isStatic: true, render});
 var wallTop = Bodies.rectangle(0, -(wallWidth /2), canvasWidth * 2, wallWidth, {isStatic: true});
 var wallLeft = Bodies.rectangle(-(wallWidth /2), 0, wallWidth, canvasHeight * 2, {isStatic: true});
 var wallRight = Bodies.rectangle(canvasWidth + wallWidth /2, 0, wallWidth, canvasHeight * 2, {isStatic: true});
+
+Events.on(MouseConstraint, "mousemove", (ev) => {
+    console.log("pohyb myši")
+    })
 
 //velice velice slozte graf segment I guess
 function linearGraphSegment(startingXCords, startingYCords, delta, segmentLength = 5) {
@@ -54,7 +73,7 @@ function graphLinearByValues(x, y, values, segmentLength = 10) {
 }
 
 
-const segmentLength = 10
+const segmentLength = eval(segment)
 
 
 // generace databodů dle zadané funkce
@@ -66,7 +85,7 @@ for (let x = -(canvasWidth / segmentLength); x <= (canvasWidth / segmentLength);
                 
                 // (2/x)
 
-                Math.sin(x / 12)
+                eval(graph)
                 
                 )
             
@@ -81,10 +100,23 @@ console.log(dataPoints)
 g = graphLinearByValues(50, 150, dataPoints, segmentLength)
 console.log(g)
 
+const mouse = Mouse.create(render.canvas);
+const mouseConstraint = MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: {
+        stiffness: 0.5,
+        render: {
+            visible: false
+        }
+    }
+});
 
+World.add(world, mouseConstraint);
 
 // Pridani objektu do sveta
 Composite.add(engine.world, [circleA, ...g, wallBotton, wallTop, wallLeft, wallRight]);
+
+render.mouse = mouse;
 
 // Render
 Render.run(render);

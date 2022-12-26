@@ -13,13 +13,22 @@
         }
 
         body {
-            margin: 0;
-            padding: 0
+            margin: 20px;
+            padding: 0px
         }
         </style>
-        <p id="velocity"></p>
+        <div>
+            <p id="velocity"></p>
+            <form>
+                <label for="graph">Which graph do you want to draw:</label><br>
+                <input type="text" id="graph" name="graph"><br>
+                <label for="segment">How many segments should your graph have:</label><br>
+                <input type="text" id="segment" name="segment"><br><br>
+                <input type="submit" value="Submit">
+              </form> 
+        </div>
 </body>
 <script src="matter.js"></script>
-<script src="decomp.js"></script>
+<script src="p5.js"></script>
 <script src="scripts.js"></script>
 </html>

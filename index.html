@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head id="funguj">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Rollin Apples</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
 </head>
-<body>
-    <style id="myCanvas">
-        canvas {
-            border: 1px solid black;
-        }
-
-        body {
-            margin: 20px;
-            padding: 0px
-        }
-        </style>
-        <div>
-            <p id="velocity"></p>
-            <form>
-                <label for="graph">Which graph do you want to draw:</label><br>
-                <input type="text" id="graph" name="graph"><br>
-                <label for="segment">How many segments should your graph have:</label><br>
-                <input type="text" id="segment" name="segment"><br><br>
-                <input type="submit" value="Submit">
-              </form> 
+<body id="funguj">
+    <div id="div" class="container-fluid mt-5">
+        <div class="row">
+            <!--Canvas-->
+            <div class="col" id="canvas">
+            </div>
+            <div class="col mt-2">
+                <form id="lmao">
+                    <label for="graph" class="form-label pt-1">Graph you want to draw:</label><br>
+                    <input type="text" id="graph" name="graph"><br>
+                    <label for="segment" class="form-label pt-2">Segments of your graph:</label><br>
+                    <input type="text" id="segment" name="segment"><br><br>
+                    <button id="submit" type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+            <div class="col mt-2">
+                <div>
+                    <p class="pt-1">Density of ball</p>
+                    <input type="range" min="1" max="100" value="1" class="slider form-range mb-1" id="dens">
+                    <span id="density" class="badge">1</span>
+                    <p class="pt-1">Air Friction of ball</p>
+                    <input type="range" min="1" max="100" value="1" class="slider2 form-range mb-1" id="fAir">
+                    <span id="airFric" class="badge">0.01</span>
+                    <p class="pt-1">Friction of ball</p>
+                    <input type="range" min="1" max="100" value="1" class="slider3 form-range mb-1" id="f">
+                    <span id="fric" class="badge">0.01</span>
+                </div>
+                <div>
+                    <button id="cBall" class="btn mt-4">Create ball</button>
+                </div>
+            </div>
         </div>
+    </div>
 </body>
 <script src="matter.js"></script>
-<script src="p5.js"></script>
 <script src="scripts.js"></script>
+
 </html>

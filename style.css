@@ -1,0 +1,31 @@
+#div{
+    color: white;
+    font-size: 15px;
+    background-color: #0f1421;
+}
+
+#lmao{
+    margin-right: auto;
+    padding-right: 0%;
+}
+
+#submit{
+    color: white;
+    background-color: darkslategray;
+    border-width: 1px;
+}
+
+#cBall{
+    color: white;
+    background-color: darkslategray;
+    border-width: 1px;
+}
+
+#dens, #fAir, #f{
+    width: 100px;
+    height: 5px;
+}
+
+#funguj{
+    background-color: #0f1421;
+}

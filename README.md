@@ -16,7 +16,7 @@ Konzultanti: Filip Hostinský, Petr Grussmann
 - Vykreslení grafu ✔
 - Možnost pro uživatele změnit graf ✔
 - Interakce s koulí ✔
-- Možnost pro přidání více koulí do simulace
+- Možnost pro přidání více koulí do simulace ✔
 
 
 ## Použité technologie:

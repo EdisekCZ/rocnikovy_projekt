@@ -11,35 +11,46 @@
     <title>Rollin Apples</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
 </head>
+
+
+
 <body id="funguj">
     <div id="div" class="container-fluid mt-5">
         <div class="row">
             <!--Canvas-->
             <div class="col" id="canvas">
             </div>
-            <div class="col mt-2">
-                <form id="lmao">
+            <div class="col mt-2" style="height: 200px">
+                <div class="d-flex flex-column  px-2" style="width: 260px; border: 2px solid darkslategray; padding: 15px; border-radius: 25px">
+                <form id="lmao" class="py-3">
                     <label for="graph" class="form-label pt-1">Graph you want to draw:</label><br>
                     <input type="text" id="graph" name="graph"><br>
                     <label for="segment" class="form-label pt-2">Segments of your graph:</label><br>
-                    <input type="text" id="segment" name="segment"><br><br>
+                    <input type="text" id="segment" name="segment">
+                    <div class="pt-4 px-5 ms-4">
                     <button id="submit" type="submit" class="btn">Submit</button>
+                        </div>
                 </form>
             </div>
-            <div class="col mt-2">
-                <div>
-                    <p class="pt-1">Density of ball</p>
+            <div class="col mt-2 py-2">
+                <div class="" style="width: 260px; border: 2px solid darkslategray; padding: 15px; border-radius: 25px; height: 380px">
+                    <p class="pt-2">Density of ball</p>
                     <input type="range" min="1" max="100" value="1" class="slider form-range mb-1" id="dens">
-                    <span id="density" class="badge">1</span>
-                    <p class="pt-1">Air Friction of ball</p>
+                    <span id="density" class="badge pb-2">1</span>
+                    <hr>
+                    <p class="pt-2">Air Friction of ball</p>
                     <input type="range" min="1" max="100" value="1" class="slider2 form-range mb-1" id="fAir">
                     <span id="airFric" class="badge">0.01</span>
+                    <hr>
                     <p class="pt-1">Friction of ball</p>
                     <input type="range" min="1" max="100" value="1" class="slider3 form-range mb-1" id="f">
                     <span id="fric" class="badge">0.01</span>
+                    <hr>
+                    <div class="pt-1 ps-5">
+                    <button id="cBall" class="btn">Create ball</button>
                 </div>
-                <div>
-                    <button id="cBall" class="btn mt-4">Create ball</button>
+                </div>
+
                 </div>
             </div>
         </div>
